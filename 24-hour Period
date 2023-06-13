@@ -3,18 +3,23 @@ import matplotlib.pyplot as plt
 
 # define the intensity function
 def intensity(t): 
-return 0.5 + np.sin(2*np.pi*t/24)
+    return 0.5 + np.sin(2*np.pi*t/24)
 
 # define the time interval
 t_start = 0
-t_finish = 24
+t_finish = 12
 np.random.seed(0)
 
 event_times = []
 t = t_start
 while t < t_finish: 
-rate = intensity(t)
-inter_arrival_time = np.random.exponential(1/rate) 
-t += inter_arrival_time
-if t<t_finish: 
-event_times.append(t)
+    rate = intensity(t)
+    inter_arrival_time = np.random.exponential(1/rate) 
+    t += inter_arrival_time
+    if t<t_finish: 
+        event_times.append(t)
+        
+plt.plot(event_times, np.zeros_like(event_times),'o')
+plt.xlabel('Time')
+plt.title('Inhomogeneous Poisson Process')
+plt.show()
